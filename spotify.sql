@@ -1,9 +1,9 @@
-use ankit;
-
-select * 
+use spotify
+	
+select *
 from activity;
 
-# total Active users each day;
+-- total Active users each day;
 select event_date,
 count(distinct user_id) as total_active_users
 from activity
@@ -17,7 +17,7 @@ activity
 group by week
 order by week;
 
-# datawise total number of users who made the purchase as they installed the app;
+-- datawise total number of users who made the purchase as they installed the app;
 with event_cte as
 	(select user_id,event_name,event_date, 
 		lead(event_date) over(partition by user_id order by event_date) as event_status,
@@ -30,11 +30,7 @@ from event_cte
 group by event_date
 ;
 
-#percentage of paid users in india,usa and other country should be tagged as others
--- country percentage_users
--- India 40
--- Usa   20
--- others 40
+-- percentage of paid users in india,usa and other country should be tagged as others
 
 select * from activity ;
 
